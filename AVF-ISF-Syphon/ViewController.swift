@@ -135,8 +135,10 @@ final class ViewController: NSViewController {
         CVDisplayLinkCreateWithActiveCGDisplays(&displayLink)
         CVDisplayLinkSetOutputCallback(displayLink!, { (displayLink, inNow, inOutputTime, flagsIn, flagsOut, displayLinkContext) -> CVReturn in
             // interpret displayLinkContext as this class to call functions
-            unsafeBitCast(displayLinkContext, ViewController.self).screenRefreshForTime(inNow.memory)
-//            unsafeBitCast(displayLinkContext, ViewController.self).cvRenderStraightToSyphon(inOutputTime.memory)
+            autoreleasepool {
+                unsafeBitCast(displayLinkContext, ViewController.self).screenRefreshForTime(inNow.memory)
+//                unsafeBitCast(displayLinkContext, ViewController.self).cvRenderStraightToSyphon(inOutputTime.memory)
+            }
             return kCVReturnSuccess
             }, UnsafeMutablePointer<Void>(unsafeAddressOf(self)))
         CVDisplayLinkStart(displayLink!)
