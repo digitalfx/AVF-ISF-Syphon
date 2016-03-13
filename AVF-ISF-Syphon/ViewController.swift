@@ -136,7 +136,7 @@ final class ViewController: NSViewController {
         CVDisplayLinkSetOutputCallback(displayLink!, { (displayLink, inNow, inOutputTime, flagsIn, flagsOut, displayLinkContext) -> CVReturn in
             // interpret displayLinkContext as this class to call functions
             autoreleasepool {
-                unsafeBitCast(displayLinkContext, ViewController.self).screenRefreshForTime(inNow.memory)
+                unsafeBitCast(displayLinkContext, ViewController.self).screenRefreshForTime(inOutputTime.memory)
 //                unsafeBitCast(displayLinkContext, ViewController.self).cvRenderStraightToSyphon(inOutputTime.memory)
             }
             return kCVReturnSuccess
