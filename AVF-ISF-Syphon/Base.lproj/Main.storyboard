@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -692,19 +691,9 @@
                                     <action selector="sliderDidChange:" target="XfG-lQ-9wD" id="JCd-Tb-jbn"/>
                                 </connections>
                             </slider>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iiD-0s-Msn">
-                                <rect key="frame" x="119" y="163" width="127" height="32"/>
-                                <buttonCell key="cell" type="push" title="NSTimer" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ors-d7-mRO">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="startNSTimer:" target="XfG-lQ-9wD" id="wqJ-hI-PFs"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wiG-iZ-dR9">
-                                <rect key="frame" x="237" y="163" width="127" height="32"/>
-                                <buttonCell key="cell" type="push" title="CVDisplayLink" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OaI-35-pMl">
+                                <rect key="frame" x="172" y="163" width="136" height="32"/>
+                                <buttonCell key="cell" type="push" title="Start Rendering" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OaI-35-pMl">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -712,14 +701,6 @@
                                     <action selector="startCVDisplayLink:" target="XfG-lQ-9wD" id="y1L-rE-eqE"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XAI-RW-3ab">
-                                <rect key="frame" x="200" y="199" width="80" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Start Render" id="Y1v-Wl-Ps6">
-                                    <font key="font" metaFont="systemLight" size="13"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VCs-QV-JbA">
                                 <rect key="frame" x="18" y="20" width="55" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Intensity" id="fYD-1v-5Ww">
@@ -731,24 +712,18 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Iu5-pZ-2yJ" secondAttribute="bottom" constant="20" id="0Rx-K0-mvS"/>
-                            <constraint firstItem="iiD-0s-Msn" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" multiplier="2/3" id="2xt-Z7-pH5"/>
                             <constraint firstItem="VCs-QV-JbA" firstAttribute="centerY" secondItem="Iu5-pZ-2yJ" secondAttribute="centerY" id="3R2-wf-7KF"/>
-                            <constraint firstItem="XAI-RW-3ab" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="BbW-2p-THk"/>
-                            <constraint firstItem="iiD-0s-Msn" firstAttribute="top" secondItem="XAI-RW-3ab" secondAttribute="bottom" constant="8" symbolic="YES" id="FKh-Mp-jv7"/>
                             <constraint firstItem="NLW-1A-qIZ" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="MRX-DR-dTc"/>
                             <constraint firstItem="Iu5-pZ-2yJ" firstAttribute="leading" secondItem="VCs-QV-JbA" secondAttribute="trailing" constant="8" symbolic="YES" id="Oqm-te-o9I"/>
-                            <constraint firstItem="wiG-iZ-dR9" firstAttribute="centerY" secondItem="iiD-0s-Msn" secondAttribute="centerY" id="TWf-Z6-obo"/>
                             <constraint firstItem="VCs-QV-JbA" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="XLL-1O-5hB"/>
+                            <constraint firstItem="wiG-iZ-dR9" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="dfi-sB-RFe"/>
                             <constraint firstAttribute="trailing" secondItem="Iu5-pZ-2yJ" secondAttribute="trailing" constant="20" id="efU-I9-LQb"/>
                             <constraint firstItem="NLW-1A-qIZ" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" multiplier="4/3" id="mOU-HR-M4c"/>
-                            <constraint firstItem="iiD-0s-Msn" firstAttribute="width" secondItem="wiG-iZ-dR9" secondAttribute="width" id="oEs-lt-daE"/>
-                            <constraint firstItem="wiG-iZ-dR9" firstAttribute="leading" secondItem="iiD-0s-Msn" secondAttribute="trailing" constant="3" id="tzx-iF-bbT"/>
-                            <constraint firstItem="iiD-0s-Msn" firstAttribute="trailing" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="w0M-RR-ihZ"/>
+                            <constraint firstItem="wiG-iZ-dR9" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" multiplier="2/3" id="rkH-5t-QYH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="startCVDisplayLinkButton" destination="wiG-iZ-dR9" id="ztA-AL-0Tu"/>
-                        <outlet property="startNSTimerButton" destination="iiD-0s-Msn" id="Dcn-di-ARc"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
