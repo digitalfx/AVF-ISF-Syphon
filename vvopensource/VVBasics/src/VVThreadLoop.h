@@ -1,9 +1,9 @@
 #import <TargetConditionals.h>
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
-#else
+#else	//	NOT TARGET_OS_IPHONE
 #import <Cocoa/Cocoa.h>
-#endif
+#endif	//	TARGET_OS_IPHONE
 #include <sys/time.h>
 #import <unistd.h>
 #include <libkern/OSAtomic.h>
@@ -48,6 +48,7 @@ You can change the execution interval, and VVThreadLoop also examines how long i
 - (void) start;
 - (void) threadCallback;
 - (void) threadProc;
+- (void) timerCallback:(NSTimer *)n;
 ///	Pauses/resumes execution.  The thread will still be running at the configured interval- that's what differentiates pause/resume from start/stop- but the target/selector won't be getting called.
 - (void) pause;
 - (void) resume;

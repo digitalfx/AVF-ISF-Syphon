@@ -199,10 +199,11 @@ unsigned long VVBufferDescriptorCalculateCPUBackingForSize(VVBufferDescriptor *b
 	switch (b->internalFormat)	{
 #if !TARGET_OS_IPHONE
 		case VVBufferIF_RGB_DXT1:	//	4 bits per pixel
+		case VVBufferIF_A_RGTC:	//	4 bits per pixel
 			bytesPerRow = 4 * s.width / 8;
 			break;
 		case VVBufferIF_RGBA_DXT5:	//	8 bits per pixel
-		//case VVBufferIF_YCoCg_DXT5:	//	8 bits per pixel
+		//case VVBufferIF_YCoCg_DXT5:	//	8 bits per pixel (flagged as duplicate case if un-commented, because both RGBA_DXT5 and YCoCg_DXT5 evaluate to the same internal format)
 			bytesPerRow = 8 * s.width / 8;
 			break;
 #endif
@@ -430,6 +431,12 @@ unsigned long VVBufferDescriptorCalculateCPUBackingForSize(VVBufferDescriptor *b
 	contentTimestamp.tv_sec = (*(n)).tv_sec;
 	contentTimestamp.tv_usec = (*(n)).tv_usec;
 }
+- (double) contentTimestampInSeconds	{
+	double		returnMe = 0.;
+	returnMe += (double)contentTimestamp.tv_sec;
+	returnMe += (((double)contentTimestamp.tv_usec) / 1000000.);
+	return returnMe;
+}
 - (void) setUserInfo:(id)n	{
 	VVRELEASE(userInfo);
 	userInfo = n;
@@ -611,6 +618,9 @@ unsigned long VVBufferDescriptorCalculateCPUBackingForSize(VVBufferDescriptor *b
 }
 - (void) setBackingReleaseCallbackContext:(void *)n	{
 	backingReleaseCallbackContext = n;
+}
+- (void) setBackingReleaseCallbackContextObject:(id)n	{
+	backingReleaseCallbackContext = (n==nil) ? nil : [n retain];
 }
 - (void *) backingReleaseCallbackContext	{
 	return backingReleaseCallbackContext;

@@ -49,14 +49,14 @@ void VVBuffer_ReleaseFFGLImage(id b, void *c)	{
 		NSLog(@"\t\terr: passed nil img %s",__func__);
 		return nil;
 	}
-	//	get a new image from the client
-	SyphonImage			*newImage = nil;
+	//	probably not necessary, but ensures that nothing else uses the GL context while we are- unlock as soon as we're done working with the context
 	pthread_mutex_lock(&contextLock);
-	newImage = [c newFrameImageForContext:[context CGLContextObj]];
+	//	get a new image from the client!
+	SyphonImage			*newImage = [c newFrameImageForContext:[context CGLContextObj]];
 	pthread_mutex_unlock(&contextLock);
 	
-	NSRect				tmpRect = NSMakeRect(0,0,0,0);
-	tmpRect.size = [newImage textureSize];
+	NSRect				newSrcRect = NSMakeRect(0,0,0,0);
+	newSrcRect.size = [newImage textureSize];
 	
 	/*		make and configure the buffer i'll be returning.  syphon actually created the GL texture, 
 	so instead of asking the VVBufferPool framework to allocate a texture, we're just going to 
@@ -80,18 +80,18 @@ void VVBuffer_ReleaseFFGLImage(id b, void *c)	{
 	desc->localSurfaceID = 0;							//	only used when working with associating textures with IOSurfaces- set to 0.
 	
 	[returnMe setPreferDeletion:YES];	//	we want to make sure that this buffer isn't pooled (the VVBuffer is just a wrapper around a syphon-created and syphon-controlled GL resource- it doesn't belong in this buffer pool)
-	[returnMe setSize:tmpRect.size];	//	set the buffer's size.  the "size" is the size of the GL resource, and is always in pixels.
-	[returnMe setSrcRect:tmpRect];		//	set the buffer's "srcRect".  the "srcRect" is the area of the GL resource that is used to describe the image this VVBuffer represents.  the units are always in pixels (even if the buffer is a GL_TEXTURE_2D, and its tex coords are normalized).  this is used to describe images that don't occupy the full region of a texture, and do zero-cost cropping.  the srcRect is respected by everything in this framework.
-	[returnMe setBackingSize:tmpRect.size];	//	the backing size is the size (in pixels) of whatever's backing the GL resource.  there's no CPU backing in this case- just set it to be the same as the buffer's "size".
+	[returnMe setSize:[newImage textureSize]];	//	set the buffer's size.  the "size" is the size of the GL resource, and is always in pixels.
+	[returnMe setSrcRect:newSrcRect];		//	set the buffer's "srcRect".  the "srcRect" is the area of the GL resource that is used to describe the image this VVBuffer represents.  the units are always in pixels (even if the buffer is a GL_TEXTURE_2D, and its tex coords are normalized).  this is used to describe images that don't occupy the full region of a texture, and do zero-cost cropping.  the srcRect is respected by everything in this framework.
+	[returnMe setBackingSize:[newImage textureSize]];	//	the backing size is the size (in pixels) of whatever's backing the GL resource.  there's no CPU backing in this case- just set it to be the same as the buffer's "size".
 	[returnMe setBackingID:VVBufferBackID_Syphon];	//	set the backing ID to indicate that this buffer was created by wrapping a syphon image.
 	
-	//	make sure the buffer i'm returning retains the image from the client, then release it!
+	//	set up the buffer i'm returning to use this callback when it's released- we'll free the SyphonImage in this callback
 	[returnMe setBackingReleaseCallback:VVBuffer_ReleaseSyphonImage];
-	[returnMe setBackingReleaseCallbackContext:newImage];
+	//	make sure the buffer i'm returning retains the image from the client!
+	[returnMe setBackingReleaseCallbackContextObject:newImage];
 	
-	//	do NOT release newImage- 'returnMe' will free it in its backing release callback when the buffer is finally dealloc'ed
-	//VVRELEASE(newImage);
-	
+	//	the 'newImage' we got from the syphon client was retained, so release it
+	[newImage release];
 	return returnMe;
 }
 #ifndef __LP64__
@@ -166,15 +166,14 @@ void VVBuffer_ReleaseFFGLImage(id b, void *c)	{
 		[returnMe setBackingID:VVBufferBackID_VVFFGL];
 	}
 	[returnMe setBackingReleaseCallback:VVBuffer_ReleaseFFGLImage];	//	this is the function that will be called when the VVBuffer is deallocated, and it's safe to release the underlying FFGLImage resource.  this function frees the FFGLImage resource.
-	[returnMe setBackingReleaseCallbackContext:i];	//	set the callback context to the FFGLImage i was passed.  the "release callback context" is the ptr passed to the "release callback" when the VVBuffer is freed.
-	[i retain];	//	retain the passed FFGLImage resource here.  the FFGLImage is retained by the VVBuffer created from it as the callback context- we want the FFGLImage to persist as long as this VVBuffer, so one has to retain the other.
+	[returnMe setBackingReleaseCallbackContextObject:i];	//	set the callback context to the FFGLImage i was passed.  the "release callback context" is the ptr passed to the "release callback" when the VVBuffer is freed.
 	
 	return returnMe;
 }
 #endif
-- (VVBuffer *) allocBufferForHapDecoderFrame:(HapDecoderFrame *)n	{
-	//NSLog(@"%s",__func__);
-	if (n==nil)
+- (VVBuffer *) allocBufferForPlane:(int)pi inHapDecoderFrame:(HapDecoderFrame *)n	{
+	//NSLog(@"%s ... %d",__func__,pi);
+	if (n==nil || pi<0 || pi>=[n dxtPlaneCount])
 		return nil;
 	//	populate a buffer descriptor based on the properties of the passed decoder frame
 	NSSize					cpuSize = [n dxtImgSize];	//	the size of the CPU-based backing (in pixels)
@@ -183,7 +182,7 @@ void VVBuffer_ReleaseFFGLImage(id b, void *c)	{
 	NSRect					cpuSrcRect = NSMakeRect(0,0,imgSize.width,imgSize.height);
 	//NSRect					gpuSrcRect = cpuSrcRect;
 	int						tmpInt;
-	OSType					codecType = [n dxtPixelFormat];
+	OSType					codecType = [n dxtPixelFormats][pi];
 	
 	tmpInt = 1;
 	while (tmpInt < gpuSize.width)
@@ -222,17 +221,28 @@ void VVBuffer_ReleaseFFGLImage(id b, void *c)	{
 		//NSLog(@"\t\thap q");
 		desc.internalFormat = VVBufferIF_YCoCg_DXT5;
 		break;
+	case FOUR_CHAR_CODE(kHapCVPixelFormat_YCoCg_DXT5_A_RGTC1):
+	case FOUR_CHAR_CODE(kHapCVPixelFormat_CoCgXY):
+		if (pi==0)
+			desc.internalFormat = VVBufferIF_YCoCg_DXT5;
+		else
+			desc.internalFormat = VVBufferIF_A_RGTC;
+		break;
+	case FOUR_CHAR_CODE(kHapCVPixelFormat_A_RGTC1):
+		//NSLog(@"\t\thap as alpha");
+		desc.internalFormat = VVBufferIF_A_RGTC;
+		break;
 	default:
-		NSLog(@"ERR: unrecognized codecType, %s",__func__);
+		NSLog(@"ERR: unrecognized codecType (%@), %s",[NSString stringFromFourCC:codecType],__func__);
 		break;
 	}
 	
 	//	try to find an existing buffer that matches its dimensions
 	VVBuffer		*returnMe = [self copyFreeBufferMatchingDescriptor:&desc sized:gpuSize backingSize:cpuSize];
 	if (returnMe == nil)	{
-		NSLog(@"\t\tallocating tex range in %s",__func__);
+		//NSLog(@"\t\tallocating tex range in %s",__func__);
 		//	if i couldn't find an existing buffer, allocate some CPU memory and build a buffer around it
-		void			*bufferMemory = malloc([n dxtMinDataSize]);
+		void			*bufferMemory = malloc([n dxtMinDataSizes][pi]);
 		returnMe = [self allocBufferForDescriptor:&desc sized:gpuSize backingPtr:bufferMemory backingSize:cpuSize];
 		[returnMe setBackingID:VVBufferBackID_Pixels];	//	purely for reference- so we know what's in the callback context
 		[returnMe setBackingReleaseCallback:VVBuffer_ReleasePixelsCallback];	//	this is the function we want to call to release the callback context
@@ -244,7 +254,22 @@ void VVBuffer_ReleaseFFGLImage(id b, void *c)	{
 	[returnMe setBackingSize:cpuSize];
 	[returnMe setBackingID:VVBufferBackID_Pixels];
 	[returnMe setFlipped:YES];
-	//[returnMe setPreferDeletion:YES];
+	[returnMe setPreferDeletion:NO];
+	return returnMe;
+}
+- (NSArray *) createBuffersForHapDecoderFrame:(HapDecoderFrame *)n	{
+	//NSLog(@"%s",__func__);
+	if (n==nil)
+		return nil;
+	NSMutableArray		*returnMe = MUTARRAY;
+	for (int i=0; i<[n dxtPlaneCount]; ++i)	{
+		VVBuffer		*tmpBuffer = [self allocBufferForPlane:i inHapDecoderFrame:n];
+		if (tmpBuffer != nil)	{
+			[returnMe addObject:tmpBuffer];
+			[tmpBuffer release];
+		}
+	}
+	//NSLog(@"\t\treturning %@",returnMe);
 	return returnMe;
 }
 

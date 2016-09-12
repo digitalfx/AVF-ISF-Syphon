@@ -5,6 +5,7 @@ final class ViewController: NSViewController {
     
     var displayLink: CVDisplayLink?
     var context: NSOpenGLContext!
+    var globalBufferPool: VVBufferPool!
     
     var player: AVPlayer?
     var videoOutput: AVPlayerItemVideoOutput!
@@ -18,12 +19,12 @@ final class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        context = NSOpenGLContext(format: GLScene.defaultPixelFormat(), shareContext: nil)
+        context = NSOpenGLContext(format: GLScene.defaultPixelFormat(), share: nil)
         
-        player = AVPlayer(URL: NSBundle.mainBundle().URLForResource("Animation", withExtension: "mov")!)
-        player?.muted = true
+        player = AVPlayer(url: Bundle.main.url(forResource: "Animation", withExtension: "mov")!)
+        player?.isMuted = true
         
-        let bufferAttributes: [String: AnyObject] = [
+        let bufferAttributes: [String: Any] = [
             String(kCVPixelBufferPixelFormatTypeKey): Int(kCVPixelFormatType_32BGRA),
             String(kCVPixelBufferIOSurfacePropertiesKey): [String: AnyObject](),
             String(kCVPixelBufferOpenGLCompatibilityKey): true
@@ -31,57 +32,60 @@ final class ViewController: NSViewController {
         
         videoOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: bufferAttributes)
         videoOutput.suppressesPlayerRendering = true
-        player?.currentItem?.addOutput(videoOutput)
+        player?.currentItem?.add(videoOutput)
         
         
         //	create the global buffer pool from the shared context
-        VVBufferPool.createGlobalVVBufferPoolWithSharedContext(context)
+        VVBufferPool.createGlobalVVBufferPool(withSharedContext: context)
         //	...other stuff in the VVBufferPool framework- like the views, the buffer copier, etc- will
         //	automatically use the global buffer pool's shared context to set themselves up to function with the pool.
+        
+        // keep a reference to the global buffer pool cast as a VVBufferPool 
+        globalBufferPool = VVBufferPool.globalVVBufferPool() as! VVBufferPool
         
         //	load an ISF file
         isfScene = ISFGLScene(sharedContext: context)
         isfScene.size = NSSize(width: 1280, height: 720)
-        isfScene.useFile(NSBundle.mainBundle().pathForResource("Glow.fs", ofType: "fs"))
+        isfScene.useFile(Bundle.main.path(forResource: "Glow.fs", ofType: "fs"))
         
         // setup inputs
         isfScene.setValue(ISFAttribVal(floatVal: Float(0.0)), forInputKey: "intensity")
         
-        syphonServer = SyphonServer(name: "ISF Glow", context: context.CGLContextObj, options: nil)
+        syphonServer = SyphonServer(name: "ISF Glow", context: context.cglContextObj, options: nil)
     }
     
     
     // MARK: CVDisplayLink Rendering
-    @IBAction func startCVDisplayLink(sender: AnyObject) {
-        startCVDisplayLinkButton.enabled = false
+    @IBAction func startCVDisplayLink(_ sender: AnyObject) {
+        startCVDisplayLinkButton.isEnabled = false
         
         CVDisplayLinkCreateWithActiveCGDisplays(&displayLink)
         CVDisplayLinkSetOutputCallback(displayLink!, { (displayLink, inNow, inOutputTime, flagsIn, flagsOut, displayLinkContext) -> CVReturn in
             autoreleasepool {
                 // interpret displayLinkContext as this class to call functions
-                unsafeBitCast(displayLinkContext, ViewController.self).screenRefreshForTime(inOutputTime.memory)
+                unsafeBitCast(displayLinkContext, to: ViewController.self).screenRefreshForTime(inOutputTime.pointee)
             }
             return kCVReturnSuccess
-            }, UnsafeMutablePointer<Void>(unsafeAddressOf(self)))
+            }, Unmanaged.passUnretained(self).toOpaque())
         
         CVDisplayLinkStart(displayLink!)
         player?.play()
     }
     
-    func screenRefreshForTime(timestamp: CVTimeStamp) {
+    func screenRefreshForTime(_ timestamp: CVTimeStamp) {
         if cvRenderToBuffer(timestamp) {
             isfRenderToSyphon()
         }
     }
     
     // render to buffer from AVPlayerItemVideoOutput
-    func cvRenderToBuffer(timestamp: CVTimeStamp) -> Bool {
-        let itemTime = videoOutput.itemTimeForCVTimeStamp(timestamp)
-        guard videoOutput.hasNewPixelBufferForItemTime(itemTime) else { NSLog("no buffer"); return false }
-        guard let pixelBuffer = videoOutput.copyPixelBufferForItemTime(itemTime, itemTimeForDisplay: nil) else { NSLog("no copy"); return false }
+    func cvRenderToBuffer(_ timestamp: CVTimeStamp) -> Bool {
+        let itemTime = videoOutput.itemTime(for: timestamp)
+        guard videoOutput.hasNewPixelBuffer(forItemTime: itemTime) else { NSLog("no buffer"); return false }
+        guard let pixelBuffer = videoOutput.copyPixelBuffer(forItemTime: itemTime, itemTimeForDisplay: nil) else { NSLog("no copy"); return false }
         guard let surface = CVPixelBufferGetIOSurface(pixelBuffer)?.takeUnretainedValue() else { NSLog("surface error"); return false }
         
-        let tex = VVBufferPool.globalVVBufferPool().allocBufferForIOSurfaceID(IOSurfaceGetID(surface))
+        let tex = globalBufferPool.allocBuffer(forIOSurfaceID: IOSurfaceGetID(surface))
         isfScene.setFilterInputImageBuffer(tex)
         
         return true
@@ -90,22 +94,22 @@ final class ViewController: NSViewController {
     // render current contents of texture through isf shader and publish to syphon server
     func isfRenderToSyphon() {
         //	tell the ISF scene to render a buffer (this renders to a GL texture)
-        let newTex = isfScene.allocAndRenderABuffer()
-        
+        if let newTex = isfScene.allocAndRenderABuffer() {
         syphonServer?.publishFrameTexture(newTex.name, textureTarget: newTex.target, imageRegion: NSRect(origin: CGPoint(x: 0, y: 0), size: newTex.size), textureDimensions: newTex.size, flipped: true)
         
+        }
         //	tell the buffer pool to do its housekeeping (releases any "old" resources in the pool that have been sticking around for a while)
-        VVBufferPool.globalVVBufferPool().housekeeping()
+        globalBufferPool.housekeeping()
     }
     
     
     // MARK: Update
-    @IBAction func rewind(sender: AnyObject) {
-        player?.seekToTime(kCMTimeZero)
+    @IBAction func rewind(_ sender: AnyObject) {
+        player?.seek(to: kCMTimeZero)
         player?.play()
     }
     
-    @IBAction func sliderDidChange(sender: NSSlider) {
+    @IBAction func sliderDidChange(_ sender: NSSlider) {
         isfScene.setValue(ISFAttribVal(floatVal: sender.floatValue), forInputKey: "intensity")
     }
     

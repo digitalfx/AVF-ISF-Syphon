@@ -205,21 +205,21 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 	_ISFMacro2DRectString==nil ||
 	_ISFMacro2DRectBiasString==nil)	{
 		NSLog(@"ERR: missing resources that should be located with ISF's parent framework, %s",__func__);
-		if (throwExceptions)
-			[NSException raise:@"Missing Resources" format:@"Unable to load file, missing text resources that should be with ISF's framework."];
 		OSSpinLockLock(&propertyLock);
 		loadingInProgress = NO;
 		OSSpinLockUnlock(&propertyLock);
+		if (throwExceptions)
+			[NSException raise:@"Missing Resources" format:@"Unable to load file, missing text resources that should be with ISF's framework."];
 		return;
 	}
 	
 	NSString		*rawFile = (p==nil) ? nil : [NSString stringWithContentsOfFile:p encoding:NSUTF8StringEncoding error:nil];
 	if (rawFile == nil)	{
-		if (throwExceptions && p!=nil)
-			[NSException raise:@"Invalid File" format:@"file %@ couldn't be loaded, encoding unrecognized",p];
 		OSSpinLockLock(&propertyLock);
 		loadingInProgress = NO;
 		OSSpinLockUnlock(&propertyLock);
+		if (throwExceptions && p!=nil)
+			[NSException raise:@"Invalid File" format:@"file %@ couldn't be loaded, encoding unrecognized",p];
 		return;
 	}
 	
@@ -245,11 +245,11 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 	openCommentRange = [rawFile rangeOfString:@"/*"];
 	closeCommentRange = [rawFile rangeOfString:@"*/"];
 	if (openCommentRange.length<=0 || closeCommentRange.length<=0)	{
-		if (throwExceptions)
-			[NSException raise:@"Missing JSON Blob" format:@"file %@ was missing the initial JSON blob describing it",p];
 		OSSpinLockLock(&propertyLock);
 		loadingInProgress = NO;
 		OSSpinLockUnlock(&propertyLock);
+		if (throwExceptions)
+			[NSException raise:@"Missing JSON Blob" format:@"file %@ was missing the initial JSON blob describing it",p];
 		return;
 	}
 	else	{
@@ -281,11 +281,11 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 		//	run through the dictionaries and values parsed from JSON, creating the appropriate attributes
 		if (![jsonObject isKindOfClass:dictClass])	{
 			NSLog(@"\t\terr: jsonObject was wrong class, %@",localFilePath);
-			if (throwExceptions)
-				[NSException raise:@"Malformed JSON Blob" format:@"JSON blob in file %@ was malformed in some way",p];
 			OSSpinLockLock(&propertyLock);
 			loadingInProgress = NO;
 			OSSpinLockUnlock(&propertyLock);
+			if (throwExceptions)
+				[NSException raise:@"Malformed JSON Blob" format:@"JSON blob in file %@ was malformed in some way",p];
 			return;
 		}
 		else	{
@@ -329,16 +329,28 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 						if (bufferDescription!=nil && [bufferDescription isKindOfClass:dictClass])	{
 							ISFTargetBuffer		*newBuffer = [ISFTargetBuffer create];
 							[newBuffer setName:bufferName];
-							NSString				*tmpString = nil;
-							tmpString = [bufferDescription objectForKey:@"WIDTH"];
-							if (tmpString != nil && [tmpString isKindOfClass:[NSString class]])	{
-								[newBuffer setTargetWidthString:tmpString];
-								bufferRequiresEval = YES;
+							id					tmpObj = nil;
+							tmpObj = [bufferDescription objectForKey:@"WIDTH"];
+							if (tmpObj != nil)	{
+								if ([tmpObj isKindOfClass:[NSString class]])	{
+									[newBuffer setTargetWidthString:tmpObj];
+									bufferRequiresEval = YES;
+								}
+								else if ([tmpObj isKindOfClass:[NSNumber class]])	{
+									[newBuffer setTargetWidthString:VVFMTSTRING(@"%d",[tmpObj intValue])];
+									bufferRequiresEval = YES;
+								}
 							}
-							tmpString = [bufferDescription objectForKey:@"HEIGHT"];
-							if (tmpString != nil && [tmpString isKindOfClass:[NSString class]])	{
-								[newBuffer setTargetHeightString:tmpString];
-								bufferRequiresEval = YES;
+							tmpObj = [bufferDescription objectForKey:@"HEIGHT"];
+							if (tmpObj != nil)	{
+								if ([tmpObj isKindOfClass:[NSString class]])	{
+									[newBuffer setTargetHeightString:tmpObj];
+									bufferRequiresEval = YES;
+								}
+								else if ([tmpObj isKindOfClass:[NSNumber class]])	{
+									[newBuffer setTargetHeightString:VVFMTSTRING(@"%d",[tmpObj intValue])];
+									bufferRequiresEval = YES;
+								}
 							}
 							NSNumber			*tmpNum = [bufferDescription objectForKey:@"FLOAT"];
 							if (tmpNum!=nil && [tmpNum isKindOfClass:[NSNumber class]] && [tmpNum boolValue])
@@ -403,11 +415,11 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 								for (NSString *fullPath in fullPaths)	{
 									//	if any of the files from the array of paths don't exist, throw an error
 									if (![fm fileExistsAtPath:fullPath])	{
-										if (throwExceptions)
-											[NSException raise:@"Missing filter resource" format:@"can't load cube map, file %@ is missing",fullPath];
 										OSSpinLockLock(&propertyLock);
 										loadingInProgress = NO;
 										OSSpinLockUnlock(&propertyLock);
+										if (throwExceptions)
+											[NSException raise:@"Missing filter resource" format:@"can't load cube map, file %@ is missing",fullPath];
 										return;
 									}
 									//	if i can't make an image from any of the paths, throw an error
@@ -417,11 +429,11 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 									UIImage		*tmpImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
 #endif
 									if (tmpImage==nil)	{
-										if (throwExceptions)
-											[NSException raise:@"Can't load image" format:@"can't load image for file %@",fullPath];
 										OSSpinLockLock(&propertyLock);
 										loadingInProgress = NO;
 										OSSpinLockUnlock(&propertyLock);
+										if (throwExceptions)
+											[NSException raise:@"Can't load image" format:@"can't load image for file %@",fullPath];
 										return;
 									}
 									[images addObject:tmpImage];
@@ -434,11 +446,11 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 								importedBuffer = [_globalVVBufferPool allocCubeMapTextureInCurrentContextForImages:images];
 #endif
 								if (importedBuffer==nil)	{
-									if (throwExceptions)
-										[NSException raise:@"filter resource can't be loaded" format:@"can't make a cubemap from files %@",fullPaths];
 									OSSpinLockLock(&propertyLock);
 									loadingInProgress = NO;
 									OSSpinLockUnlock(&propertyLock);
+									if (throwExceptions)
+										[NSException raise:@"filter resource can't be loaded" format:@"can't make a cubemap from files %@",fullPaths];
 									return;
 								}
 								//	the num at the userInfo stores how many inputs are using the buffer
@@ -475,11 +487,11 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 							//	if the PATH object isn't a string, throw an error
 							NSString		*partialPath = [importDict objectForKey:@"PATH"];
 							if (![partialPath isKindOfClass:[NSString class]])	{
-								if (throwExceptions)
-									[NSException raise:@"Conflicting filter definition" format:@"supplied PATH for an imported image wasn't a string, %@",partialPath];
 								OSSpinLockLock(&propertyLock);
 								loadingInProgress = NO;
 								OSSpinLockUnlock(&propertyLock);
+								if (throwExceptions)
+									[NSException raise:@"Conflicting filter definition" format:@"supplied PATH for an imported image wasn't a string, %@",partialPath];
 								return;
 							}
 							NSString		*fullPath = [VVFMTSTRING(@"%@/%@",parentDirectory,partialPath) stringByStandardizingPath];
@@ -499,11 +511,11 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 							if (importedBuffer==nil)	{
 								//	if the path doesn't describe a valid file, throw an error
 								if (![fm fileExistsAtPath:fullPath])	{
-									if (throwExceptions)
-										[NSException raise:@"Missing filter resource" format:@"can't load, file %@ is missing",partialPath];
 									OSSpinLockLock(&propertyLock);
 									loadingInProgress = NO;
 									OSSpinLockUnlock(&propertyLock);
+									if (throwExceptions)
+										[NSException raise:@"Missing filter resource" format:@"can't load, file %@ is missing",partialPath];
 									return;
 								}
 								//	load the image at the path, store it in the array of imported buffers
@@ -522,11 +534,11 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 								VVRELEASE(tmpImg);
 								//	throw an error if i can't load the image
 								if (importedBuffer==nil)	{
-									if (throwExceptions)
-										[NSException raise:@"filter resource can't be loaded" format:@"file %@ was found, but can't be loaded",partialPath];
 									OSSpinLockLock(&propertyLock);
 									loadingInProgress = NO;
 									OSSpinLockUnlock(&propertyLock);
+									if (throwExceptions)
+										[NSException raise:@"filter resource can't be loaded" format:@"file %@ was found, but can't be loaded",partialPath];
 									return;
 								}
 								//	the num at the userInfo stores how many inputs are using the buffer
@@ -1569,7 +1581,8 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 				else	{
 					NSString		*newFuncString = nil;
 					NSString		*samplerName = [varArray objectAtIndex:0];
-					newFuncString = VVFMTSTRING(@"(_%@_imgRect.zw)",samplerName);
+					//newFuncString = VVFMTSTRING(@"(_%@_imgRect.zw)",samplerName);
+					newFuncString = VVFMTSTRING(@"(_%@_imgSize.xy)",samplerName);
 					[modSrcString replaceCharactersInRange:fullFuncRangeToReplace withString:newFuncString];
 					tmpRange.location = fullFuncRangeToReplace.location + [newFuncString length];
 					tmpRange.length = [modSrcString length] - tmpRange.location;
@@ -1788,7 +1801,8 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 				else	{
 					NSString		*newFuncString = nil;
 					NSString		*samplerName = [varArray objectAtIndex:0];
-					newFuncString = VVFMTSTRING(@"(_%@_imgRect.zw)",samplerName);
+					//newFuncString = VVFMTSTRING(@"(_%@_imgRect.zw)",samplerName);
+					newFuncString = VVFMTSTRING(@"(_%@_imgSize.xy)",samplerName);
 					[modSrcString replaceCharactersInRange:fullFuncRangeToReplace withString:newFuncString];
 					tmpRange.location = fullFuncRangeToReplace.location + [newFuncString length];
 					tmpRange.length = [modSrcString length] - tmpRange.location;
@@ -2996,6 +3010,21 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 	if (deleted || passes==nil)
 		return 0;
 	return (int)[passes count];
+}
+- (NSArray *) passTargetNames	{
+	if (deleted || passes==nil)
+		return nil;
+	
+	NSMutableArray		*returnMe = MUTARRAY;
+	[passes rdlock];
+	for (ISFRenderPass *pass in [passes array])	{
+		NSString		*passName = [pass targetName];
+		if (passName!=nil)
+			[returnMe addObject:passName];
+	}
+	[passes unlock];
+	
+	return returnMe;
 }
 - (int) imageInputsCount	{
 	if (deleted || imageInputs==nil)
