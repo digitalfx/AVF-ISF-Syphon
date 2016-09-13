@@ -24,6 +24,8 @@
 		A5BFE67D1D87FD4000734245 /* VVBufferPool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5BFE6751D87FD2A00734245 /* VVBufferPool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5BFE67E1D87FD4000734245 /* VVISFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BFE6761D87FD2A00734245 /* VVISFKit.framework */; };
 		A5BFE67F1D87FD4000734245 /* VVISFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5BFE6761D87FD2A00734245 /* VVISFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A5F27BE11D87FFB600EFA87E /* DDMathParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F27BDF1D87FF9A00EFA87E /* DDMathParser.framework */; };
+		A5F27BE21D87FFB700EFA87E /* DDMathParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5F27BDF1D87FF9A00EFA87E /* DDMathParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +38,7 @@
 				A5BFE67F1D87FD4000734245 /* VVISFKit.framework in Embed Frameworks */,
 				A58CCDBA1C943C2F00842610 /* Syphon.framework in Embed Frameworks */,
 				A5BFE67B1D87FD4000734245 /* VVBasics.framework in Embed Frameworks */,
+				A5F27BE21D87FFB700EFA87E /* DDMathParser.framework in Embed Frameworks */,
 				A5BFE67D1D87FD4000734245 /* VVBufferPool.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -60,6 +63,7 @@
 		A5BFE6741D87FD2A00734245 /* VVBasics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBasics.framework; sourceTree = "<group>"; };
 		A5BFE6751D87FD2A00734245 /* VVBufferPool.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBufferPool.framework; sourceTree = "<group>"; };
 		A5BFE6761D87FD2A00734245 /* VVISFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVISFKit.framework; sourceTree = "<group>"; };
+		A5F27BDF1D87FF9A00EFA87E /* DDMathParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DDMathParser.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 				A5BFE67E1D87FD4000734245 /* VVISFKit.framework in Frameworks */,
 				A58CCDB91C943C2F00842610 /* Syphon.framework in Frameworks */,
 				A5BFE67A1D87FD4000734245 /* VVBasics.framework in Frameworks */,
+				A5F27BE11D87FFB600EFA87E /* DDMathParser.framework in Frameworks */,
 				A5BFE67C1D87FD4000734245 /* VVBufferPool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +91,7 @@
 				A5BFE6741D87FD2A00734245 /* VVBasics.framework */,
 				A5BFE6751D87FD2A00734245 /* VVBufferPool.framework */,
 				A5BFE6761D87FD2A00734245 /* VVISFKit.framework */,
+				A5F27BDF1D87FF9A00EFA87E /* DDMathParser.framework */,
 			);
 			sourceTree = "<group>";
 		};
