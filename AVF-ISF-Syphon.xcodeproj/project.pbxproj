@@ -18,324 +18,13 @@
 		A58CCD461C943B6F00842610 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58CCD441C943B6F00842610 /* Main.storyboard */; };
 		A58CCDB91C943C2F00842610 /* Syphon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58CCDB61C943C0700842610 /* Syphon.framework */; };
 		A58CCDBA1C943C2F00842610 /* Syphon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A58CCDB61C943C0700842610 /* Syphon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A598027F1D86F0D10094EAEA /* VVISFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59802281D86EE840094EAEA /* VVISFKit.framework */; };
-		A59802801D86F0D10094EAEA /* VVISFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A59802281D86EE840094EAEA /* VVISFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A598028B1D86F1050094EAEA /* VVBasics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59802221D86EE840094EAEA /* VVBasics.framework */; };
-		A598028C1D86F1050094EAEA /* VVBasics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A59802221D86EE840094EAEA /* VVBasics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A598028F1D86F1110094EAEA /* VVBufferPool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59802241D86EE840094EAEA /* VVBufferPool.framework */; };
-		A59802901D86F1110094EAEA /* VVBufferPool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A59802241D86EE840094EAEA /* VVBufferPool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A5BFE67A1D87FD4000734245 /* VVBasics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BFE6741D87FD2A00734245 /* VVBasics.framework */; };
+		A5BFE67B1D87FD4000734245 /* VVBasics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5BFE6741D87FD2A00734245 /* VVBasics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A5BFE67C1D87FD4000734245 /* VVBufferPool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BFE6751D87FD2A00734245 /* VVBufferPool.framework */; };
+		A5BFE67D1D87FD4000734245 /* VVBufferPool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5BFE6751D87FD2A00734245 /* VVBufferPool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A5BFE67E1D87FD4000734245 /* VVISFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BFE6761D87FD2A00734245 /* VVISFKit.framework */; };
+		A5BFE67F1D87FD4000734245 /* VVISFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5BFE6761D87FD2A00734245 /* VVISFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A59802211D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 961EA8ED100E8565007E6C25;
-			remoteInfo = "VVBasics-mac";
-		};
-		A59802231D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96C8073A19817C1600FA7825;
-			remoteInfo = "VVBufferPool-mac";
-		};
-		A59802251D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96C8071219817BFE00FA7825;
-			remoteInfo = "DDMathParser-mac";
-		};
-		A59802271D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 964FF27D1981B5AF00CCC808;
-			remoteInfo = "VVISFKit-mac";
-		};
-		A59802291D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96B06C1C18BE0ECF000A921C;
-			remoteInfo = "VVUIToolbox-mac";
-		};
-		A598022B1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 961745F4100F86B400FB60E6;
-			remoteInfo = VVMIDI;
-		};
-		A598022D1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9628D0C5100E89F700C3944E;
-			remoteInfo = "VVOSC-mac";
-		};
-		A598022F1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A7128AF1B61065000528CDB;
-			remoteInfo = MultiClassXPC;
-		};
-		A59802311D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 968FAA86108B6141000E470D;
-			remoteInfo = CrashReporterTestApp;
-		};
-		A59802331D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9656D900100F89BA0064EEA6;
-			remoteInfo = MIDITestApp;
-		};
-		A59802351D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9628D179100E8B4D00C3944E;
-			remoteInfo = OSCTestApp;
-		};
-		A59802371D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96B49302106AEB4C008FB26E;
-			remoteInfo = MIDIviaOSC;
-		};
-		A59802391D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 966CCBD81431EFB9006D580F;
-			remoteInfo = OSCQueryTest;
-		};
-		A598023B1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96ACD7211706416300138AE6;
-			remoteInfo = OSCPingTester;
-		};
-		A598023D1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 965C1CAC1983BE7D00111741;
-			remoteInfo = "GLScene Test App";
-		};
-		A598023F1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 965C1CC71983BE9A00111741;
-			remoteInfo = "QCGLScene Test App";
-		};
-		A59802411D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 965C1CE21983BEA200111741;
-			remoteInfo = "CIGLScene Test App";
-		};
-		A59802431D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 965C1CFD198403C300111741;
-			remoteInfo = "ISFGLScene Test App";
-		};
-		A59802451D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96140109198AD46D00335292;
-			remoteInfo = "QT and Hap Test App";
-		};
-		A59802471D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A7128D41B610B4700528CDB;
-			remoteInfo = MultiClassXPCTestApp;
-		};
-		A59802491D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A7128F81B610B6F00528CDB;
-			remoteInfo = MultiClassXPCTestService;
-		};
-		A598024B1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A7AB8C71BED159000B2B129;
-			remoteInfo = SyphonToAndFromVVBuffer;
-		};
-		A598024D1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A7AB8DC1BED17A200B2B129;
-			remoteInfo = ArbitraryGLTextureToVVBuffer;
-		};
-		A598024F1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1AEE1EC11C136883005259C0;
-			remoteInfo = GLShaderSceneTestApp;
-		};
-		A59802511D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1AE1A7AD1CDA6803005F924D;
-			remoteInfo = "PBOGLtoCPUtoGL Test App";
-		};
-		A59802531D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1AE1A7C21CDA6812005F924D;
-			remoteInfo = "TexRangeGLtoCPU Test App";
-		};
-		A59802551D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1AE1A7D71CDA6824005F924D;
-			remoteInfo = GPUUploadBenchmark;
-		};
-		A59802571D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1AE1A7EC1CDA682C005F924D;
-			remoteInfo = GPUDownloadBenchmark;
-		};
-		A59802591D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1AC5A4CC1CEE4138004DF358;
-			remoteInfo = MTCSender;
-		};
-		A598025B1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1AFE77281D65AC9B003D8E7C;
-			remoteInfo = "ISF Editor";
-		};
-		A598025D1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A486EA01C42F43000B4291E;
-			remoteInfo = "VVBasics-iOS";
-		};
-		A598025F1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A486EAD1C42F44300B4291E;
-			remoteInfo = "VVBufferPool-iOS";
-		};
-		A59802611D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A486EBA1C42F45200B4291E;
-			remoteInfo = "DDMathParser-iOS";
-		};
-		A59802631D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A486EC71C42F45B00B4291E;
-			remoteInfo = "VVISFKit-iOS";
-		};
-		A59802651D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A486ED41C42F46700B4291E;
-			remoteInfo = "VVUIToolbox-iOS";
-		};
-		A59802671D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A486EE11C42F47100B4291E;
-			remoteInfo = "VVOSC-iOS";
-		};
-		A59802691D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A00B8C51C430B3600BC2BEB;
-			remoteInfo = ISFonIOSTest;
-		};
-		A598026B1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A68C23B1CDBDD46001FF7D6;
-			remoteInfo = QCQL;
-		};
-		A598026D1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A68C24B1CDBDD54001FF7D6;
-			remoteInfo = QCQL_Renderer;
-		};
-		A598026F1D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A1A01E91CDBFE3D00E49E5A;
-			remoteInfo = ISFQL;
-		};
-		A59802711D86EE840094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A1A01F91CDBFE4900E49E5A;
-			remoteInfo = ISFQL_Renderer;
-		};
-		A59802811D86F0D10094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 964FF27C1981B5AF00CCC808;
-			remoteInfo = "VVISFKit-mac";
-		};
-		A598028D1D86F1050094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 961EA8EC100E8565007E6C25;
-			remoteInfo = "VVBasics-mac";
-		};
-		A59802911D86F1110094EAEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 96C8073919817C1600FA7825;
-			remoteInfo = "VVBufferPool-mac";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A58CCDB51C943B9800842610 /* Embed Frameworks */ = {
@@ -344,10 +33,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A59802801D86F0D10094EAEA /* VVISFKit.framework in Embed Frameworks */,
-				A598028C1D86F1050094EAEA /* VVBasics.framework in Embed Frameworks */,
-				A59802901D86F1110094EAEA /* VVBufferPool.framework in Embed Frameworks */,
+				A5BFE67F1D87FD4000734245 /* VVISFKit.framework in Embed Frameworks */,
 				A58CCDBA1C943C2F00842610 /* Syphon.framework in Embed Frameworks */,
+				A5BFE67B1D87FD4000734245 /* VVBasics.framework in Embed Frameworks */,
+				A5BFE67D1D87FD4000734245 /* VVBufferPool.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,7 +57,9 @@
 		A58CCD471C943B6F00842610 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A58CCDB61C943C0700842610 /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Syphon.framework; sourceTree = "<group>"; };
 		A58CCDBB1C943CBF00842610 /* Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bridging.h; path = ../Bridging.h; sourceTree = "<group>"; };
-		A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VVOpenSource.xcodeproj; path = vvopensource/VVOpenSource.xcodeproj; sourceTree = "<group>"; };
+		A5BFE6741D87FD2A00734245 /* VVBasics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBasics.framework; sourceTree = "<group>"; };
+		A5BFE6751D87FD2A00734245 /* VVBufferPool.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBufferPool.framework; sourceTree = "<group>"; };
+		A5BFE6761D87FD2A00734245 /* VVISFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVISFKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,10 +67,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A598027F1D86F0D10094EAEA /* VVISFKit.framework in Frameworks */,
-				A598028B1D86F1050094EAEA /* VVBasics.framework in Frameworks */,
-				A598028F1D86F1110094EAEA /* VVBufferPool.framework in Frameworks */,
+				A5BFE67E1D87FD4000734245 /* VVISFKit.framework in Frameworks */,
 				A58CCDB91C943C2F00842610 /* Syphon.framework in Frameworks */,
+				A5BFE67A1D87FD4000734245 /* VVBasics.framework in Frameworks */,
+				A5BFE67C1D87FD4000734245 /* VVBufferPool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +83,9 @@
 				A58CCD3D1C943B6F00842610 /* AVF-ISF-Syphon */,
 				A58CCD3C1C943B6F00842610 /* Products */,
 				A58CCDB61C943C0700842610 /* Syphon.framework */,
-				A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */,
+				A5BFE6741D87FD2A00734245 /* VVBasics.framework */,
+				A5BFE6751D87FD2A00734245 /* VVBufferPool.framework */,
+				A5BFE6761D87FD2A00734245 /* VVISFKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -422,54 +115,6 @@
 			path = "AVF-ISF-Syphon";
 			sourceTree = "<group>";
 		};
-		A59801F11D86EE840094EAEA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A59802221D86EE840094EAEA /* VVBasics.framework */,
-				A59802241D86EE840094EAEA /* VVBufferPool.framework */,
-				A59802261D86EE840094EAEA /* DDMathParser.framework */,
-				A59802281D86EE840094EAEA /* VVISFKit.framework */,
-				A598022A1D86EE840094EAEA /* VVUIToolbox.framework */,
-				A598022C1D86EE840094EAEA /* VVMIDI.framework */,
-				A598022E1D86EE840094EAEA /* VVOSC.framework */,
-				A59802301D86EE840094EAEA /* MultiClassXPC.framework */,
-				A59802321D86EE840094EAEA /* CrashReporterTestApp.app */,
-				A59802341D86EE840094EAEA /* MIDITestApp.app */,
-				A59802361D86EE840094EAEA /* OSCTestApp.app */,
-				A59802381D86EE840094EAEA /* MIDIviaOSC.app */,
-				A598023A1D86EE840094EAEA /* OSCQueryTest.app */,
-				A598023C1D86EE840094EAEA /* OSCPingTester.app */,
-				A598023E1D86EE840094EAEA /* GLScene Test App.app */,
-				A59802401D86EE840094EAEA /* QCGLScene Test App.app */,
-				A59802421D86EE840094EAEA /* CIGLScene Test App.app */,
-				A59802441D86EE840094EAEA /* ISFGLScene Test App.app */,
-				A59802461D86EE840094EAEA /* QT and Hap Test App.app */,
-				A59802481D86EE840094EAEA /* MultiClassXPCTestApp.app */,
-				A598024A1D86EE840094EAEA /* MultiClassXPCTestService.xpc */,
-				A598024C1D86EE840094EAEA /* SyphonToAndFromVVBuffer.app */,
-				A598024E1D86EE840094EAEA /* ArbitraryGLTextureToVVBuffer.app */,
-				A59802501D86EE840094EAEA /* GLShaderSceneTestApp.app */,
-				A59802521D86EE840094EAEA /* PBOGLtoCPUtoGL Test App.app */,
-				A59802541D86EE840094EAEA /* TexRangeGLtoCPU Test App.app */,
-				A59802561D86EE840094EAEA /* GPUUploadBenchmark.app */,
-				A59802581D86EE840094EAEA /* GPUDownloadBenchmark.app */,
-				A598025A1D86EE840094EAEA /* MTCSender.app */,
-				A598025C1D86EE840094EAEA /* ISF Editor.app */,
-				A598025E1D86EE840094EAEA /* VVBasics.framework */,
-				A59802601D86EE840094EAEA /* VVBufferPool.framework */,
-				A59802621D86EE840094EAEA /* DDMathParser.framework */,
-				A59802641D86EE840094EAEA /* VVISFKit.framework */,
-				A59802661D86EE840094EAEA /* VVUIToolbox.framework */,
-				A59802681D86EE840094EAEA /* VVOSC.framework */,
-				A598026A1D86EE840094EAEA /* ISFonIOSTest.app */,
-				A598026C1D86EE840094EAEA /* QCQL.qlgenerator */,
-				A598026E1D86EE840094EAEA /* com.vidvox.QCQL-Renderer.app */,
-				A59802701D86EE840094EAEA /* ISFQL.qlgenerator */,
-				A59802721D86EE840094EAEA /* com.vidvox.ISFQL-Renderer.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -485,9 +130,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A59802821D86F0D10094EAEA /* PBXTargetDependency */,
-				A598028E1D86F1050094EAEA /* PBXTargetDependency */,
-				A59802921D86F1110094EAEA /* PBXTargetDependency */,
 			);
 			name = "AVF-ISF-Syphon";
 			productName = "AVF-ISF-Syphon";
@@ -521,308 +163,12 @@
 			mainGroup = A58CCD321C943B6F00842610;
 			productRefGroup = A58CCD3C1C943B6F00842610 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = A59801F11D86EE840094EAEA /* Products */;
-					ProjectRef = A59801F01D86EE840094EAEA /* VVOpenSource.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				A58CCD3A1C943B6F00842610 /* AVF-ISF-Syphon */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		A59802221D86EE840094EAEA /* VVBasics.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVBasics.framework;
-			remoteRef = A59802211D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802241D86EE840094EAEA /* VVBufferPool.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVBufferPool.framework;
-			remoteRef = A59802231D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802261D86EE840094EAEA /* DDMathParser.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DDMathParser.framework;
-			remoteRef = A59802251D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802281D86EE840094EAEA /* VVISFKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVISFKit.framework;
-			remoteRef = A59802271D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598022A1D86EE840094EAEA /* VVUIToolbox.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVUIToolbox.framework;
-			remoteRef = A59802291D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598022C1D86EE840094EAEA /* VVMIDI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVMIDI.framework;
-			remoteRef = A598022B1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598022E1D86EE840094EAEA /* VVOSC.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVOSC.framework;
-			remoteRef = A598022D1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802301D86EE840094EAEA /* MultiClassXPC.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MultiClassXPC.framework;
-			remoteRef = A598022F1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802321D86EE840094EAEA /* CrashReporterTestApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CrashReporterTestApp.app;
-			remoteRef = A59802311D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802341D86EE840094EAEA /* MIDITestApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MIDITestApp.app;
-			remoteRef = A59802331D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802361D86EE840094EAEA /* OSCTestApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = OSCTestApp.app;
-			remoteRef = A59802351D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802381D86EE840094EAEA /* MIDIviaOSC.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MIDIviaOSC.app;
-			remoteRef = A59802371D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598023A1D86EE840094EAEA /* OSCQueryTest.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = OSCQueryTest.app;
-			remoteRef = A59802391D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598023C1D86EE840094EAEA /* OSCPingTester.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = OSCPingTester.app;
-			remoteRef = A598023B1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598023E1D86EE840094EAEA /* GLScene Test App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "GLScene Test App.app";
-			remoteRef = A598023D1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802401D86EE840094EAEA /* QCGLScene Test App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "QCGLScene Test App.app";
-			remoteRef = A598023F1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802421D86EE840094EAEA /* CIGLScene Test App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "CIGLScene Test App.app";
-			remoteRef = A59802411D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802441D86EE840094EAEA /* ISFGLScene Test App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "ISFGLScene Test App.app";
-			remoteRef = A59802431D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802461D86EE840094EAEA /* QT and Hap Test App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "QT and Hap Test App.app";
-			remoteRef = A59802451D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802481D86EE840094EAEA /* MultiClassXPCTestApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MultiClassXPCTestApp.app;
-			remoteRef = A59802471D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598024A1D86EE840094EAEA /* MultiClassXPCTestService.xpc */ = {
-			isa = PBXReferenceProxy;
-			fileType = "wrapper.xpc-service";
-			path = MultiClassXPCTestService.xpc;
-			remoteRef = A59802491D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598024C1D86EE840094EAEA /* SyphonToAndFromVVBuffer.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = SyphonToAndFromVVBuffer.app;
-			remoteRef = A598024B1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598024E1D86EE840094EAEA /* ArbitraryGLTextureToVVBuffer.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ArbitraryGLTextureToVVBuffer.app;
-			remoteRef = A598024D1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802501D86EE840094EAEA /* GLShaderSceneTestApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = GLShaderSceneTestApp.app;
-			remoteRef = A598024F1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802521D86EE840094EAEA /* PBOGLtoCPUtoGL Test App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "PBOGLtoCPUtoGL Test App.app";
-			remoteRef = A59802511D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802541D86EE840094EAEA /* TexRangeGLtoCPU Test App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "TexRangeGLtoCPU Test App.app";
-			remoteRef = A59802531D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802561D86EE840094EAEA /* GPUUploadBenchmark.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = GPUUploadBenchmark.app;
-			remoteRef = A59802551D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802581D86EE840094EAEA /* GPUDownloadBenchmark.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = GPUDownloadBenchmark.app;
-			remoteRef = A59802571D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598025A1D86EE840094EAEA /* MTCSender.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MTCSender.app;
-			remoteRef = A59802591D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598025C1D86EE840094EAEA /* ISF Editor.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "ISF Editor.app";
-			remoteRef = A598025B1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598025E1D86EE840094EAEA /* VVBasics.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVBasics.framework;
-			remoteRef = A598025D1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802601D86EE840094EAEA /* VVBufferPool.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVBufferPool.framework;
-			remoteRef = A598025F1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802621D86EE840094EAEA /* DDMathParser.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DDMathParser.framework;
-			remoteRef = A59802611D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802641D86EE840094EAEA /* VVISFKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVISFKit.framework;
-			remoteRef = A59802631D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802661D86EE840094EAEA /* VVUIToolbox.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVUIToolbox.framework;
-			remoteRef = A59802651D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802681D86EE840094EAEA /* VVOSC.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VVOSC.framework;
-			remoteRef = A59802671D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598026A1D86EE840094EAEA /* ISFonIOSTest.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ISFonIOSTest.app;
-			remoteRef = A59802691D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598026C1D86EE840094EAEA /* QCQL.qlgenerator */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = QCQL.qlgenerator;
-			remoteRef = A598026B1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A598026E1D86EE840094EAEA /* com.vidvox.QCQL-Renderer.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "com.vidvox.QCQL-Renderer.app";
-			remoteRef = A598026D1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802701D86EE840094EAEA /* ISFQL.qlgenerator */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ISFQL.qlgenerator;
-			remoteRef = A598026F1D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A59802721D86EE840094EAEA /* com.vidvox.ISFQL-Renderer.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "com.vidvox.ISFQL-Renderer.app";
-			remoteRef = A59802711D86EE840094EAEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A58CCD391C943B6F00842610 /* Resources */ = {
@@ -852,24 +198,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A59802821D86F0D10094EAEA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "VVISFKit-mac";
-			targetProxy = A59802811D86F0D10094EAEA /* PBXContainerItemProxy */;
-		};
-		A598028E1D86F1050094EAEA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "VVBasics-mac";
-			targetProxy = A598028D1D86F1050094EAEA /* PBXContainerItemProxy */;
-		};
-		A59802921D86F1110094EAEA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "VVBufferPool-mac";
-			targetProxy = A59802911D86F1110094EAEA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A58CCD441C943B6F00842610 /* Main.storyboard */ = {
