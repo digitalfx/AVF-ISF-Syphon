@@ -105,7 +105,7 @@ final class ViewController: NSViewController {
     
     // MARK: Update
     @IBAction func rewind(_ sender: AnyObject) {
-        player?.seek(to: kCMTimeZero)
+        player?.seek(to: CMTime.zero)
         player?.play()
     }
     
