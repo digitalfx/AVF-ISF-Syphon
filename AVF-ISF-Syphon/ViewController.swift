@@ -41,7 +41,7 @@ final class ViewController: NSViewController {
         //	automatically use the global buffer pool's shared context to set themselves up to function with the pool.
         
         // keep a reference to the global buffer pool cast as a VVBufferPool 
-        globalBufferPool = VVBufferPool.globalVVBufferPool() as! VVBufferPool
+        globalBufferPool = VVBufferPool.globalVVBufferPool() as? VVBufferPool
         
         //	load an ISF file
         isfScene = ISFGLScene(sharedContext: context)

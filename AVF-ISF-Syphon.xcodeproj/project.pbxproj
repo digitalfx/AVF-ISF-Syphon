@@ -154,13 +154,13 @@
 				TargetAttributes = {
 					A58CCD3A1C943B6F00842610 = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
 			buildConfigurationList = A58CCD361C943B6F00842610 /* Build configuration list for PBXProject "AVF-ISF-Syphon" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -332,8 +332,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.AVF-ISF-Syphon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Bridging.h;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -351,8 +350,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.AVF-ISF-Syphon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Bridging.h;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
